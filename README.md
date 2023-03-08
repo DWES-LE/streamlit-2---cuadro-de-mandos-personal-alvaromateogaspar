@@ -24,7 +24,7 @@ La aplicación se llamará `futbol.py`.
 Carga el conjunto de datos en un dataframe de pandas y realiza un análisis exploratorio de los datos.
 
 ## Visualización de los datos
-La visualización final muestra los goles de un equipo, los goles marcados en x jornada, el % de victorias locales, el porcentaje de victorias visitantes y las jornadas con mayor número de goles
+La visualización final muestra las jornadas, los goles de un equipo, los goles marcados en x jornada, el % de victorias locales, el porcentaje de victorias visitantes y las jornadas con mayor número de goles
 
 ## Diseña la interacción que van a tener tus datos
 Los filtros los podemos encontrar a lo largo de la página
