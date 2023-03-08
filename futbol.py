@@ -1,5 +1,7 @@
 import streamlit as st
 import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
 
 st.title("Bundesliga 2016/2017")
 
@@ -51,29 +53,43 @@ df_filtrado = df.loc[df["Team 2"] == equipo_seleccionado]
 # Mostrar los datos filtrados en una tabla
 st.dataframe(df_filtrado)
 
+#filtrar partidos por fecha
+
 st.write('Consultar partidos por fecha')
 
+# Crear una lista para consultar los partidos por fecha
 
-
-
+# Crear el menú desplegable de los equipos
 fecha_seleccionada = st.selectbox(
     "Selecciona una fecha", df["Date"].unique().tolist())
 
-
+# Filtrar el DataFrame original para mostrar solo los datos de los partidos visitantes del equipo seleccionado
 df_filtrado = df.loc[df["Date"] == fecha_seleccionada]
 
-
+# Mostrar los datos filtrados en una tabla
 st.dataframe(df_filtrado)
 
-#Cambiar el estilo de la tabla
-st.markdown("""
-<style>
-.dataframe td, .dataframe th {
-    border: 1px  black solid !important;
-    color: black !important;
-}
-</style>
-""", unsafe_allow_html=True)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
