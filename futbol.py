@@ -1,73 +1,86 @@
-import streamlit as st
 import pandas as pd
+import plotly.express as px
+import streamlit as st
+import base64
 import numpy as np
-import matplotlib.pyplot as plt
 
-st.title("Bundesliga 2016/2017")
-
-
-url = "https://raw.githubusercontent.com/footballcsv/deutschland/master/2010s/2016-17/de.1.csv"
-
-df = pd.read_csv(url)
-
-st.write('Consultar jornadas')
-
-# Crear una lista de las jornadas únicas
-jornadas = df["Matchday"].unique().tolist()
-
-# Crear el menú desplegable de las jornadas
-jornada_seleccionada = st.selectbox("Selecciona una jornada", jornadas)
-
-# Filtrar el DataFrame original para mostrar solo los datos de la jornada seleccionada
-df_filtrado = df.loc[df["Matchday"] == jornada_seleccionada]
-
-# Mostrar los datos filtrados en una tabla
-st.dataframe(df_filtrado)
-
-st.write('Consultar partidos locales de un equipo')
-
-# Crear una lista para consultar los partidos locales de un equipo
-
-# Crear el menú desplegable de los equipos
-equipo_seleccionado = st.selectbox(
-    "Selecciona un equipo", df["Team 1"].unique().tolist())
-
-# Filtrar el DataFrame original para mostrar solo los datos de los partidos locales del equipo seleccionado
-df_filtrado = df.loc[df["Team 1"] == equipo_seleccionado]
-
-# Mostrar los datos filtrados en una tabla
-st.dataframe(df_filtrado)
-
-st.write('Consultar partidos visitantes de un equipo')
+def add_bg_from_local(image_file):
+    with open(image_file, "rb") as image_file:
+        encoded_string = base64.b64encode(image_file.read())
+    st.markdown(
+    f"""
+    <style>
+    .stApp {{
+        background-image: url(data:image/{"png"};base64,{encoded_string.decode()});
+        background-size: cover
+    }}
+    </style>
+    """,
+    unsafe_allow_html=True
+    )
+add_bg_from_local('laromareda.jpg')   
 
 
-# Crear una lista para consultar los partidos visitantes de un equipo
+st.title(':soccer: Real Zaragoza 2022-2023')
+st.subheader('Toda la información de la plantilla del Real Zaragoza')
+archivo_excel = 'Real_Zaragoza.xlsx'
+df = pd.read_excel(archivo_excel)
 
-# Crear el menú desplegable de los equipos
-equipo_seleccionado = st.selectbox(
-    "Selecciona un equipo", df["Team 2"].unique().tolist())
 
-# Filtrar el DataFrame original para mostrar solo los datos de los partidos visitantes del equipo seleccionado
-df_filtrado = df.loc[df["Team 2"] == equipo_seleccionado]
+st.sidebar.title('Opciones a filtrar')
+st.sidebar.subheader('Filtrar por posición')
+posicion = st.sidebar.selectbox('Posicion', df['Posicion'].unique())
+st.sidebar.subheader('Filtrar por nacionalidad')
+nacionalidad = st.sidebar.selectbox('Pais', df['Pais'].unique())
+st.sidebar.subheader('Filtrar por edad')
+edad = st.sidebar.slider('Edad', min_value=18, max_value=38, value=25)
+st.sidebar.subheader('Filtrar por número de goles')
+minutos = st.sidebar.slider('G', min_value=0, max_value=30, value=0)
 
-# Mostrar los datos filtrados en una tabla
-st.dataframe(df_filtrado)
+st.subheader('Plantilla')
+st.dataframe(df)
 
-#filtrar partidos por fecha
+st.subheader('Filtrado por posición')
+st.dataframe(df[df['Posicion'] == posicion])
 
-st.write('Consultar partidos por fecha')
+st.subheader('Filtrado por nacionalidad')
+st.dataframe(df[df['Pais'] == nacionalidad])
 
-# Crear una lista para consultar los partidos por fecha
+st.subheader('Filtrado por edad')
+st.dataframe(df[df['Edad'] == edad])
 
-# Crear el menú desplegable de los equipos
-fecha_seleccionada = st.selectbox(
-    "Selecciona una fecha", df["Date"].unique().tolist())
+st.subheader('Filtrado por número de goles')
+st.dataframe(df[df['G'] == minutos])
 
-# Filtrar el DataFrame original para mostrar solo los datos de los partidos visitantes del equipo seleccionado
-df_filtrado = df.loc[df["Date"] == fecha_seleccionada]
 
-# Mostrar los datos filtrados en una tabla
-st.dataframe(df_filtrado)
+st.subheader('Gráfico de jugadores por nacionalidad')
+fig = px.histogram(df, x='Pais', color='Pais', title='Jugadores por nacionalidad')
+st.plotly_chart(fig)
+
+#crea un grafico de tarta con los jugadores que llevan TA
+st.subheader('Gráfico de jugadores con % de tarjetas tarjetas amarillas del equipo')
+fig = px.pie(df, values='TA', names='Nombre', title='Jugadores con tarjetas amarillas')
+st.plotly_chart(fig)
+
+#crea un grafico de area con los goles de cada jugador
+st.subheader('Gráfico de jugadores con % de goles del equipo')
+fig = px.area(df, x='Nombre', y='G', title='Jugadores con goles')
+st.plotly_chart(fig)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

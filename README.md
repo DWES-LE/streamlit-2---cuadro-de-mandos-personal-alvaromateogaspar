@@ -4,33 +4,30 @@
 > Incluye en tu README la url de donde has publicado tu aplicación. Pon la `url` también en el `About` de tu repositorio.
 
 ## Objetivo
-Diseño de un cuadro de mandos personal para visualización e interacción con un conjunto de datos que muestre los datos sobre los encuentros disputados en La Lga Smartbank durante la temporada 2020/2021
+Diseño de un cuadro mandos que permita visualizar las estadisiticas del Real Zaragoza en la temporada 2022-203
 
 ## Los datos
 Los datos que contiene son:
 
-Jornada, fecha, equipos y resultados
+Mote, Nombre, Apellidos, Fecha de nacimiento 📅 , edad 🔞 , lugar de nacimiento 🏥 , país 🏙️ , posición, dorsal 1️⃣0️⃣ , partidos jugados 🔢 (pj), partidos de titular 👕 (pt), partidos de suplente 🦺 (ps), minutos ⌚ (M), goles ⚽ (G), tarjetas amarillas 🟨 (TA) y tarjetas rojas 🟥 (TR)
 
 ## Búsqueda de los datos
-Busca una fuente para tus datos. Puedes usar una API de un portal de datos abiertos, un conjunto ya publicado, recopilar personalmente datos por scraping, etc.
+Los datos han sido obtenidos de manera manual por mí, consultando la página web dbfutbol.com. Tras consultarlos, también he creado el excel correspondiente.
 
 ## Documentación de los datos
-Documenta los datos que vas a usar y su origen. De dónde los has sacado, fuentes, etc. Describe los campos, los valores, las unidades, etc.
+El campo Mote es el apodo por el que se llama normalmente al jugador. 
+Nombre, Apellidos, Fecha de nacimiento, edad, lugar de nacimiento y país indician la información personal del jugador
+Posición, dorsal, partidos jugados, partidos de titular, partidos de suplente, minutos, goles, amarillas y rojas indican la información profesional del jugador
 
 ## Prepara tu aplicación.
 La aplicación se llamará `futbol.py`.
 
-## Carga y análisis de conjunto de dato con pandas
-Carga el conjunto de datos en un dataframe de pandas y realiza un análisis exploratorio de los datos.
 
 ## Visualización de los datos
-La visualización final muestra las jornadas, los goles de un equipo, los goles marcados en x jornada, el % de victorias locales, el porcentaje de victorias visitantes y las jornadas con mayor número de goles
+La visualización final muestra la plantilla al completo. Depende del filtro que usemos podemos visualizar una cosa u otra, como por ejemplos los porteros, los jugadores de nacionalidad argentina... etc. 
 
-## Diseña la interacción que van a tener tus datos
-Los filtros los podemos encontrar a lo largo de la página
+Además disponemos de tres graficos, los cuales segregan por nacionalidad, por el % de tarjetas amarillas que lleva cada jugador con respecto al equipo y un gráfico con los goles de cada jugador del equipo
 
-## Prepara la aplicación (cuadro de mandos) con Streamlit
-Prepara y prueba la aplicación.
 
 ## Publica la aplicación.
 Publica la aplicación en Streamlit Cloud, en Heroku o en el servicio que prefieras https://docs.streamlit.io/streamlit-community-cloud/get-started/deploy-an-app
