@@ -30,4 +30,6 @@ Además disponemos de tres graficos, los cuales segregan por nacionalidad, por e
 
 
 ## Publica la aplicación.
-Publica la aplicación en Streamlit Cloud, en Heroku o en el servicio que prefieras https://docs.streamlit.io/streamlit-community-cloud/get-started/deploy-an-app
+Para probar la aplicación solo tienes que copiar el respositorio: git clone https://github.com/DWES-LE/streamlit-2---cuadro-de-mandos-personal-alvaromateogaspar.git
+
+y posteriormente poner en el cmd dentro de la ruta del archivo run streamlit futbol.py
